@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="msapplication-tap-highlight" content="no" />
+    <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="stylesheet" href="css/idangerous.swiper.css">
+
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="css/questpages.css" />
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div class="heading">
+    <h1>GEO-QUEST</h1>
+    </div>
+    <!--WARREN CHANGES-->
+    <div data-role="page" align="center" id="loginPage">
+        <h2>Registration</h2>
+        
+            <div class="NameForm">
+                <!--<label for="userName">User Name</label>-->
+                <input name="userName"  placeholder="User Name" type="text" id="username" value="" />
+            </div>
+
+            <!-- <div class="passWordForm">
+                <label for="password"></label>
+                <input name="password" type="password" value="password" />
+            </div> -->
+            <div data-role="btn" id="registerbtn">Login</div>
+            <p></p>
+        
+        <!--WARREN CHANGES-->
+        <div align="center" class="loginPageSocial">
+            <!-- <img width="93%" ; height="50px" ; src="img/fbLogin.png" /> -->
+            <!--            <img  src="img/Twitter.png" />-->
+        </div>
+
+    </div>
+
+    <div data-role="page"  class="hide" id="welcomepages">
+        <div align="center" class="innerReward">
+            <h1 class="loginUsername"></h1>
+        </div>
+        <ul id="mainPageList">
+            <li data-role="btn" id="createQuest">CREATE QUEST</li>
+            <li data-role="btn" id="joinQuest">JOIN QUEST</li>
+            <li data-role="btn" id="myQuest">MY QUEST</li>
+        </ul>
+
+    </div>
+
+    <!-- Create QUEST PAGE -->
+    <div data-role="page"  class="hide" id="createQuestPage">
+   
+
+        <div id="createContainer">
+            <div class="startQuest">
+                 <h1>Create QUEST</h1>
+                <h2>How to Start Your Quest</h2>
+                <p>Step 1: Add a name to your quest for people to find it</p>
+                <p>Step 2: Click NEXT when you are in the rigth GPS Coordinates</p>
+            </div>
+            
+                <!--<label for="questName">QuestName</label>-->
+            <div class="createQuestForm">
+                <input type="questName" placeholder="quest name" id="questName" name="QuestName" />
+                <div data-role="btn" id="nextQuest2ndPage">NEXT</div>
+            </div>
+            <!--  <P id="getGps">UseGPS</p> -->
+            <!-- <div id="textField"> -->
+        </div>
+        
+        <div data-role="btn" align="center" class="back backbtn1">Back</div>
+    </div>
+    
+    
+    
+
+    <div data-role="page"  class="hide" id="createQuestMapPage">
+        <div id="locationContainer" data-GEOQuest-id="" data-sequence="">
+            
+            <h1>Map Your Location</h1>
+            
+            <P data-role="btn" id="getGps">UseGPS</p>
+
+<!--
+            <div id="mapcontainer" data-lat="" data-lon="">
+
+                 map info here 
+
+            </div>
+-->
+            
+            <div id="locationHintArea">
+                <p>Add your hint to this location here:</p>
+                <textarea>
+
+                </textarea>
+                <p>Click Next and go to your next location</p>
+                <div data-role="btn" id="nextQuestPage2">Next</div>
+                <div data-role="btn" class='btn' id='locationSubmit'>Submit</div>
+            </div>
+            
+            <div class="information">your first location</div>
+        </div>
+        
+        <div align="" class="innerReward">
+            <div data-role="btn" class="back back2">BACK</div>
+        </div>
+    </div>
+
+
+    <!-- Join Quest Page -->
+    <div  data-role="page"  class="hide" id="joinQuestPage">
+
+        
+            <div class="joinQuestContainer">
+                <div align="center" class="">
+                    <div data-role="btn" class="back">BACK</div>
+                    <h1>Join QUEST</h1>
+                </div>
+                <div class="allQuestsContainer">
+<!--
+                    <ul class="questsList">
+                    </ul>
+-->
+                </div>
+            </div>
+        
+    </div>
+     <div  data-role="page"  class="hide" id="joinLocationsPgae">
+        <div  data-currentQuest="" class="joinLocationsContainer">
+            <div align="center" class="">
+                    <div data-role="btn" class="joinBack">BACK</div>
+                    <h1>Locations Track</h1>
+            </div>
+            <p data-lat="" data-lon="" class="hintInfo"></p>
+        </div>
+        
+    </div>
+    <div data-role="page"  class="hide" id="dialog">
+        <h2>congratulations</h2>
+        <p>you got it</p>
+        <div id="resultMap"></div>
+        <span data-role="btn" id="saveStatus">save</span>
+        <span data-role="btn" id="nextLocation">next</span>
+    </div>
+    <!-- My Quest Page -->
+    <div data-role="page"  class="hide" id="myQuestPage">
+
+        <div class="myQuestContainer">
+                <div align="center" class="">
+                    <div data-role="btn" class="back">BACK</div>
+                    <h1>MY QUEST</h1>
+                </div>
+                <div class="myQuests">
+<!--
+                    <ul class="questsList">
+                    </ul>
+-->
+                </div>
+        </div>
+    </div>
+    <div data-role="page"  class='mask hide'></div>
+    
+    <!--<script type="text/javascript" ssrc="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZY9ykZWMC_mpnjnLjNvgdnODldd68ax4"></script>-->
+
+</body>
+<!-- <script type="text/javascript" src="cordova.js"></script>-->
+    <script type="text/javascript"  src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBlxl4n5tEKRAqD9vHlrOteDBNhXtZnqyk&libraries=geometry&sensor=false"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+ <script type="text/javascript" src="js/fastclick.js"></script>
+    <script type="text/javascript" src="js/sqlLite.js"></script>
+     <script type="text/javascript" src="js/becca.js"></script>
+    <script type="text/javascript" src="js/angus.js"></script>
+     <script type="text/javascript" src="js/index.js"></script>
+   
+    <script type="text/javascript" src="js/idangerous.swiper-2.0.min.js"></script>
+</html>
