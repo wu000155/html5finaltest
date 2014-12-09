@@ -57,11 +57,12 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 }
 
 #createQuestPage{
+	position:absolute;
 	background-color:#FEFFF7;
-	width:15rem;
-	height:18rem;
+	width:18rem;
+	height:28rem;
 	margin-left:2rem;
-	margin-top:3rem;
+	margin-top:6rem;
 	
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight:100;
@@ -73,7 +74,7 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 	text-align:center;
 	}	
 .startQuest  h1{
-		font-size:1.1rem;
+   font-size:1.5rem;
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight:300;
 	color:#FFFFFF;
@@ -86,17 +87,18 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 .startQuest h2{
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight:200;
-	font-size:1em;
-	width:13.2rem;
+	font-size:1.3em;
+	width:16rem;
 	margin-left:0.8rem;
 	}	
 .startQuest p{
-	font-size:0.8rem;
-	width:13.2rem;
+	font-size:1rem;
+	font-weight:200;
+	width:16rem;
 	margin-left:0.8rem;
 	}	
-#createContainer  input{
-   width:13rem;
+#createContainer input{
+   width:16rem;
 	outline:none;
 	/*background-color:#F7F7F0;*/
 	background-color:#FFFDF1;
@@ -110,7 +112,7 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 	border-bottom:#BEBEBE solid 1px;
 	box-shadow:#CFCFCF 0px 1px 1px;
 	
-	font-size:1.5rem;
+	font-size:2rem;
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight:100;
 	margin-top:0.5rem;
@@ -119,38 +121,53 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 	
 ::-webkit-input-placeholder {
    color:#515151;
-   font-size:1rem;
-   padding-top:0.3rem;
+   font-size:2rem;
+   padding-top:0.1rem;
    padding-left:0.2rem;
 }
 
 :-moz-placeholder { /* Firefox 18- */
    color:#515151;
-   font-size:1rem;
-   padding-top:0.3rem;
+   font-size:2rem;
+   padding-top:0.1rem;
    padding-left:0.2rem;
 }
 
 ::-moz-placeholder {  /* Firefox 19+ */
    color:#515151;
-   font-size:1rem;
-   padding-top:0.3rem;
+   font-size:2rem;
+   padding-top:0.1rem;
    padding-left:0.2rem;
 }
 
 :-ms-input-placeholder {  
    color:#515151;
-   font-size:1rem;
-   padding-top:0.3rem;
+   font-size:2rem;
+   padding-top:0.1rem;
    padding-left:0.2rem;
 }	
 
-#nextQuest2ndPage{
+/*#createContainer form Button{
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight:100;
-	font-size:0.9rem;
+	font-size:1.5rem;
 	color:#FFFFFF;
-	margin-top:0.8rem;
+	margin-top:1.3rem;
+	margin-left:0.8rem;
+	background-color:#cc463f;	
+	border:none;
+	box-shadow:#CFCFCF 0px 2px 1px;
+	width:16rem;
+	outline:none;
+	}*/	
+	
+#nextQuest2ndPage{
+	text-align:center;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:100;
+	font-size:2rem;
+	color:#FFFFFF;
+	margin-top:1.3rem;
 	margin-left:0.8rem;
 	/*background-color:rgba(255,255,255,0.5);*/
 	background-color:#cc463f;
@@ -158,28 +175,36 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 	border:none;
 	box-shadow:#CFCFCF 0px 2px 1px;
 
-	width:13.2rem;
+	width:16rem;
 	outline:none;
 	}	
 	
+	
 .backbtn1{
+		
+	
+	background:#cc463f;
+	
+    z-index:30000;
+	position:fixed;
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight:100;
-	font-size:0.9rem;
+	font-weight:200;
+	font-size:0.8rem;
+	
+	margin-top:1.7rem;
+	margin-left:0.5rem;
+	
+	padding-top:0.2rem;
+	padding-bottom:0.2rem;
+	padding-left:1rem;
+	padding-right:0.1rem;
+	
+	width:3rem;
+	border: 1px #FFFFFF solid;
+	border-radius:1px;
 	color:#FFFFFF;
-	margin-top:0.8rem;
-	margin-bottom:0.8rem;
-	margin-left:0.8rem;
-	padding-top:0.1rem;
-	padding-bottom:0.1rem;
-	/*background-color:rgba(255,255,255,0.5);*/
-	background-color:#cc463f;
-	/*border:1px #515151 solid;*/
-	border:none;
-	box-shadow:#CFCFCF 0px 2px 1px;
-	width:13.2rem;
-
 	}
+
 
 
 /*******************************************************************************************************************************************/
@@ -187,10 +212,12 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 /*******************************************************************************************************************************************/
 /*******************************************************************************************************************************************/
 #createQuestMapPage{
-	background-color:#FFFFFF;
+	position:absolute;
+	background-color:#FEFFF7;
 	margin-top:1rem;
-	width:18rem;
+	width:20rem;
 	margin-left:1rem;
+	margin-top:5rem;
 	box-shadow:#8E8E8E 0px 2px 2px;
 	}
 	
@@ -205,14 +232,14 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 	padding-bottom:0.5rem;
 	box-shadow:#727272 0px 1px 1px;
 	}	
-#locationContainer #locationHintArea p{
+#locationHintArea p{
 	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight:200;
 	text-align:center;
 	}
-#locationContainer textarea{
+#locationHintArea textarea{
 	width:16rem;
-	margin-left:0.8rem;
+	margin-left:2rem;
 	outline:none;
 	height:3rem;
 	}	
@@ -231,7 +258,7 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 	box-shadow:#727272 0px 1px 1px;
 	}	
 #mapcontainer{
-	width:18rem;
+	width:20rem;
 	box-shadow:#727272 0px 1px 1px;
 	}
 	
@@ -284,28 +311,205 @@ box-shadow: 0px 8px 5px 0px rgba(0,0,0,0.42);
 	background-color:#FFFCE8;
 	border:1px solid #B6B6B6;
 	}	
-.back2{
-	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	font-weight:100;
-	color:#FFFFFF;
-    background-color:#cc463f;
 	
-	margin-left:0.4rem;
-	margin-top:1rem;
-	margin-bottom:1rem;
+/*.back2{
+	z-index:1000;
+	position:absolute;	
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:300;
+	font-size:1rem;
+	color:#FFFFFF;
+	
+	
+	margin-bottom:0rem;
+	margin-left:-1rem;
+	margin-top:-4.3rem;
+	
+	padding-bottom:0.1rem;
+	padding-top:0.1rem;
+	
+	border:1px solid #FFFFFF;
+	border-radius:5px;
+	
+	width:4rem;
+	}*/	
+
+/*******************************************************************************************************************************************/
+.allQuestsContainer{
+	position:absolute;
+	width:18rem;
+	background:#FEFFF7;
+	margin-left:2rem;
+	margin-top:6.5rem;
+	margin-bottom:2rem;
+	box-shadow:#8E8E8E 0px 2px 2px;
+	}
+
+
+.joinQuestTitle{
+	
+	/*background:#FFFFFF;
+	box-shadow:#8E8E8E 0px 1px 1px;*/
+	margin-top:5rem;
+	position:absolute;
+	
+	position:absolute;
+	z-index:100;
+	margin-left:2rem;
+	}
+.joinQuestTitle h1{
+	width:18rem;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:200;
+	font-size:1.2rem;
+	
+	margin-top:rem;
+	padding-top:0.5rem;
+	padding-bottom:0.5rem;
+	
+	color:#F6F6F6;
+	background:#cc463f;
+	box-shadow:#8E8E8E 0px 1px 1px;
+	}	
+	
+.back{
+	z-index:30000;
+	position:fixed;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:200;
+	font-size:0.8rem;
+	
+	margin-top:1.7rem;
+	margin-left:0.5rem;
 	
 	padding-top:0.2rem;
-	padding-left:0.3rem;
 	padding-bottom:0.2rem;
-	width:4rem;
-	border:none;
-	box-shadow:#727272 0px 1px 1px;
+	padding-left:1rem;
+	padding-right:0.1rem;
+	
+	width:3rem;
+	border: 1px #FFFFFF solid;
+	border-radius:1px;
+	color:#FFFFFF;
 	}	
+	.back2{
+    z-index:30000;
+	position:fixed;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:200;
+	font-size:0.8rem;
+	
+	margin-top:1.7rem;
+	margin-left:0.5rem;
+	
+	padding-top:0.2rem;
+	padding-bottom:0.2rem;
+	padding-left:1rem;
+	padding-right:0.1rem;
+	
+	width:3rem;
+	border: 1px #ED2C2C solid;
+	border-radius:1px;
+	color:#ED2C2C;
+}
+.questsList{
+	margin-left:-2.5rem;
+	}
+	
+.questsList li{
+	text-align:center;
+	color:#cc463f;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:200;
+	font-size:1rem;
+	
+	padding-top:1rem;
+	padding-bottom:1rem;
+	
+	border-bottom:1px solid rgba(0,0,0,0.3);
+/*	box-shadow:#8E8E8E 0px 1px 1px;*/
+	
+	}
+
+/*******************************************************************************************************************************************/
+/*******************************************************************************************************************************************/
+/*******************************************************************************************************************************************/
 /*******************************************************************************************************************************************/
 
 
-
-
-
-
-
+.myQuests{
+	position:absolute;
+	width:18rem;
+	background:#FEFFF7;
+	margin-left:2rem;
+	margin-top:8rem;
+	margin-bottom:2rem;
+	box-shadow:#8E8E8E 0px 2px 2px;
+	}
+	
+.myQuestTitle{
+	margin-top:6.5rem;
+	position:absolute;
+	
+	position:absolute;
+	z-index:100;
+	margin-left:2rem;
+	}	
+	
+.myQuestTitle h1{
+	width:18rem;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:200;
+	font-size:1.2rem;
+	
+	margin-top:rem;
+	padding-top:0.5rem;
+	padding-bottom:0.5rem;
+	
+	color:#F6F6F6;
+	background:#cc463f;
+	box-shadow:#8E8E8E 0px 1px 1px;
+	
+	}	
+	
+	
+.myQuestsList{
+	margin-left:-2.5rem;
+	}
+	
+.myQuestsList li{
+	text-align:center;
+	color:#cc463f;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:200;
+	font-size:1rem;
+	
+	padding-top:1rem;
+	padding-bottom:1rem;
+	
+	border-bottom:1px solid rgba(0,0,0,0.3);
+/*	box-shadow:#8E8E8E 0px 1px 1px;*/
+	
+	}	
+	
+.back4{
+	z-index:300000000;
+	position:fixed;
+	font-family:Gotham, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight:200;
+	font-size:0.8rem;
+	
+	margin-top:rem;
+	margin-left:rem;
+	
+	padding-top:0.2rem;
+	padding-bottom:0.2rem;
+	padding-left:1rem;
+	padding-right:0.1rem;
+	
+	width:3rem;
+	border: 1px #FFFFFF solid;
+	border-radius:1px;
+	color:#FFFFFF;
+	}	
+	

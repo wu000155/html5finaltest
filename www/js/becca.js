@@ -206,13 +206,14 @@ var becca={
         lite.showLocation();
     },
     showFinishedinfo :function(){
-          $('.joinLocationsContainer').append('<div class="notification">you finished this whole quest,5 sec later will go to homepage</div>')
+        console.log('showFinishedinfo');
+          $('.joinLocationsContainer').append('<div class="notification">you finished this whole quest,3 sec later will go to join quest page</div>')
           setTimeout(function () {
                             $('.joinLocationsContainer .notification').remove()
-                        }, 4000)
+                        }, 3000)
            setTimeout(function () {
                $('#joinLocationsPgae').addClass('hide');
-                           app.welcomepages();
-                        }, 5000)
+                           becca.joinQuestPage();
+                        }, 3000)
     }
 }

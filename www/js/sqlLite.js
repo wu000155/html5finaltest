@@ -73,12 +73,15 @@ var lite = {
                             if ($('#locationContainer .information')) {
                                 $('#locationContainer .information').remove();
                             }
+                            $('#locationContainer').attr('data-sequence',sequence);
                             console.info("locations have been inserted");
+							 $('#questMapPagebtn').removeClass('hide');
+                             $('#questMapPagebtn').addClass('show');
                             $('#mapcontainer').attr('data-lat', '');
                             $('#mapcontainer').attr('data-lon', '');
                             $("textarea").val('');
                             $('#mapcontainer').remove();
-//                            $('<div id="mapcontainer" data-lat="" data-lon=""></div>').insertAfter($('#locationContainer #getGps'))
+                            //                            $('<div id="mapcontainer" data-lat="" data-lon=""></div>').insertAfter($('#locationContainer #getGps'))
                             var pages = sequence + 1
                             $('<div class="information">your No.' + pages + ' location</div>').insertAfter($('#locationContainer #locationHintArea'))
                             /****************add transition class again to fake page change******good choice************/
@@ -244,6 +247,10 @@ var lite = {
                         becca.showLocationTrack();
                     } else {
                         //show finish whole quest info function
+                        $('[data-role="page"]').removeClass('show');
+                        $('[data-role="page"]').addClass('hide');
+                        $('#joinLocationsPgae').removeClass('hide');
+                        $('#joinLocationsPgae').addClass('show');
                         becca.showFinishedinfo();
                     }
 

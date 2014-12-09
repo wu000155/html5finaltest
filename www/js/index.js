@@ -35,55 +35,55 @@ var app = {
 
     bindEvents: function () {
         document.addEventListener('deviceready', this.onDeviceReady, false);
-       var allBtn= document.querySelectorAll('[data-role="btn"]');
-        for(var i=0; i<allBtn.length;i++){
+        var allBtn = document.querySelectorAll('[data-role="btn"]');
+        for (var i = 0; i < allBtn.length; i++) {
             FastClick.attach(allBtn[i]);
         }
-       FastClick.attach(document.querySelector('[data-role="btn"]'));
-            $("#createQuest").bind("click", app.createQuestPage);
-            $("#joinQuest").bind("click", becca.joinQuestPage);
-            $("#myQuest").bind("click", angus.myQuestPage);
-            $("#registerbtn").bind("click", app.login);
-            $(".back").bind("click", app.welcomepages);
-            $("#nextQuest2ndPage").bind("click", app.saveQuest);
-            $('#getGps').bind('click', app.getGeo);
-            $('#nextQuestPage2').bind('click', app.nextLocation);
-            $('#locationSubmit').bind("click", app.submitLocations);
-            $('#saveStatus').bind('click', lite.checkStatus);
-            $('#nextLocation').bind('click', becca.nextGame);
-            $(".joinBack").bind("click", becca.joinQuestPage);
+        FastClick.attach(document.querySelector('[data-role="btn"]'));
+        $("#createQuest").bind("click", app.createQuestPage);
+        $("#joinQuest").bind("click", becca.joinQuestPage);
+        $("#myQuest").bind("click", angus.myQuestPage);
+        $("#registerbtn").bind("click", app.login);
+        $(".back").bind("click", app.welcomepages);
+        $("#nextQuest2ndPage").bind("click", app.saveQuest);
+        $('#getGps').bind('click', app.getGeo);
+        $('#nextQuestPage2').bind('click', app.nextLocation);
+        $('#locationSubmit').bind("click", app.submitLocations);
+        $('#saveStatus').bind('click', lite.checkStatus);
+        $('#nextLocation').bind('click', becca.nextGame);
+        $(".joinBack").bind("click", becca.joinQuestPage);
 
-//        if (app.detectTouchSupport()) {
-//            $("#createQuest").bind("touchend", app.handleTouchEnd);
-//            $("#createQuest").bind("onetap", app.createQuestPage);
-//
-//            $("#joinQuest").bind("touchend", app.handleTouchEnd);
-//            $("#joinQuest").bind("onetap", becca.joinQuestPage);
-//
-//            $("#myQuest").bind("touchend", app.handleTouchEnd);
-//            $("#myQuest").bind("onetap", angus.myQuestPage);
-//
-//            //            $("#nextQuest2ndPage").bind("touchend", app.handleTouchEnd);
-//            //            $("#nextQuest2ndPage").bind("onetap", app.createQuestMapPage);
-//
-//
-//
-//            //        btn.addEventListener("touchend", handleTouchEnd);
-//            //         btn.addEventListener("onetap", register);
-//        } else {
-//
-//            $("#createQuest").bind("click", app.createQuestPage);
-//            $("#joinQuest").bind("click", becca.joinQuestPage);
-//            $("#myQuest").bind("click", angus.myQuestPage);
-//            //            $("#nextQuest2ndPage").bind("click", app.createQuestMapPage);
-//
-//
-//
-//
-//
-//
-//            //            btn.addEventListener("click", register);
-//        }
+        //        if (app.detectTouchSupport()) {
+        //            $("#createQuest").bind("touchend", app.handleTouchEnd);
+        //            $("#createQuest").bind("onetap", app.createQuestPage);
+        //
+        //            $("#joinQuest").bind("touchend", app.handleTouchEnd);
+        //            $("#joinQuest").bind("onetap", becca.joinQuestPage);
+        //
+        //            $("#myQuest").bind("touchend", app.handleTouchEnd);
+        //            $("#myQuest").bind("onetap", angus.myQuestPage);
+        //
+        //            //            $("#nextQuest2ndPage").bind("touchend", app.handleTouchEnd);
+        //            //            $("#nextQuest2ndPage").bind("onetap", app.createQuestMapPage);
+        //
+        //
+        //
+        //            //        btn.addEventListener("touchend", handleTouchEnd);
+        //            //         btn.addEventListener("onetap", register);
+        //        } else {
+        //
+        //            $("#createQuest").bind("click", app.createQuestPage);
+        //            $("#joinQuest").bind("click", becca.joinQuestPage);
+        //            $("#myQuest").bind("click", angus.myQuestPage);
+        //            //            $("#nextQuest2ndPage").bind("click", app.createQuestMapPage);
+        //
+        //
+        //
+        //
+        //
+        //
+        //            //            btn.addEventListener("click", register);
+        //        }
 
         // YI CODE HERE AN OTHER PLACES?
 
@@ -118,12 +118,12 @@ var app = {
     },
 
     showloginPage: function () {
-//        if (app.detectTouchSupport()) {
-//            $("#registerbtn").bind("touchend", app.handleTouchEnd);
-//            $("#registerbtn").bind("onetap", app.login);
-//        } else {
-//            $("#registerbtn").bind("click", app.login);
-//        }
+        //        if (app.detectTouchSupport()) {
+        //            $("#registerbtn").bind("touchend", app.handleTouchEnd);
+        //            $("#registerbtn").bind("onetap", app.login);
+        //        } else {
+        //            $("#registerbtn").bind("click", app.login);
+        //        }
 
     },
     login: function (ev) {
@@ -156,7 +156,11 @@ var app = {
                         if (JSON.parse(result).user_id != null) {
                             app.registrationsuccess(result);
                         } else {
-                            alert('same user name');
+                            // alert('same user name');
+                            $('<div class="notification">same user name</div>').insertBefore($('#createContainer .createQuestForm'))
+                            setTimeout(function () {
+                                $('#createContainer .notification').remove()
+                            }, 4000)
                         }
 
                     } else {
@@ -165,6 +169,11 @@ var app = {
                             $('#frontPage .notification').remove()
                         }, 4000)
                     }
+                } else {
+                    $('.loginPageSocial').append('<div class="notification">Oops! fail to register your account, please try again</div>');
+                    setTimeout(function () {
+                        $('#frontPage .notification').remove()
+                    }, 4000)
                 }
             }
             request.send(data);
@@ -189,11 +198,15 @@ var app = {
         $(".loginUsername").html("Welcome: " + userName);
         /***************************page change**********************************/
         //$('#loginPage').addClass('hide');
-         $('[data-role="page"]').removeClass('show');
+        $('[data-role="page"]').removeClass('show');
         $('[data-role="page"]').addClass('hide');
         $('#welcomepages').removeClass('hide');
         $('#welcomepages').addClass('show');
+		 $('#questMapPagebtn').removeClass('show');
+		$('#questMapPagebtn').addClass('hide');
+       
         $("#questName").val("");
+        $('#locationContainer').attr('data-sequence','');
     },
 
 
@@ -206,21 +219,21 @@ var app = {
 
 
 
-         $('[data-role="page"]').removeClass('show');
+        $('[data-role="page"]').removeClass('show');
         $('[data-role="page"]').addClass('hide');
         $('#createQuestPage').removeClass('hide');
         $('#createQuestPage').addClass('show');
 
-//        if (app.detectTouchSupport()) {
-//            $(".back ,.nextQuest2ndPage").bind("touchend", app.handleTouchEnd);
-//            $(".back").bind("onetap", app.welcomepages);
-//            $(".nextQuest2ndPage").bind("click", app.saveQuest);
-//        } else {
-//            $(".back").bind("click", app.welcomepages);
-//            $(".nextQuest2ndPage").bind("click", app.saveQuest);
-//
-//        }
-     
+        //        if (app.detectTouchSupport()) {
+        //            $(".back ,.nextQuest2ndPage").bind("touchend", app.handleTouchEnd);
+        //            $(".back").bind("onetap", app.welcomepages);
+        //            $(".nextQuest2ndPage").bind("click", app.saveQuest);
+        //        } else {
+        //            $(".back").bind("click", app.welcomepages);
+        //            $(".nextQuest2ndPage").bind("click", app.saveQuest);
+        //
+        //        }
+
 
     },
     saveQuest: function (ev) {
@@ -258,7 +271,11 @@ var app = {
                             $("#questName").val("");
                             app.createQuestMapPage(quest_id);
                         } else {
-                            alert('same quest name');
+                            //alert('same quest name');
+                            $('<div class="notification">same quest name</div>').insertBefore($('#createContainer .createQuestForm'))
+                            setTimeout(function () {
+                                $('#createContainer .notification').remove()
+                            }, 4000)
                         }
 
                     } else {
@@ -269,6 +286,10 @@ var app = {
                         }, 4000)
                     }
                 }
+                $('<div class="notification">Oops! fail to save your quest, please try again</div>').insertBefore($('#createContainer .createQuestForm'))
+                setTimeout(function () {
+                    $('#createContainer .notification').remove()
+                }, 4000)
             }
             request.send(data);
         } else {
@@ -293,43 +314,52 @@ var app = {
         /***************************page change**********************************/
         $('#locationContainer').attr('data-GEOQuest-id', quest_id);
 
-        if ($('#locationContainer').attr('data-sequence') && $('#locationContainer').attr('data-sequence') == '') {
+        if ($('#locationContainer').attr('data-sequence')=="") {
             sequence = 0;
+			console.log(sequence);
+			//has issue
+            $('#locationContainer').attr('data-sequence',sequence);
+			$('<div class="notification">Finish your first location, then you can see back button</div>').insertBefore($('#locationContainer #locationHintArea'))
+							setTimeout(function () {
+								$('#locationContainer .notification').remove()
+							}, 4000)
         } else {
             if ($('#locationContainer .information')) {
                 $('#locationContainer .information').remove();
             }
             sequence = Number($('#locationContainer').attr('data-sequence'));
+			console.log(sequence);
+            $('#questMapPagebtn').removeClass('hide');
+            $('#questMapPagebtn').addClass('show');
             var pages = sequence + 1
             $('<div class="information">your No.' + pages + ' location</div>').insertAfter($('#locationContainer #locationHintArea'))
-            $('#locationContainer').attr('data-sequence','');
+            $('#locationContainer').attr('data-sequence', '');
         }
         /***************************temporary solution**********************************/
-//        $('#getGps, #nextQuestPage2, #locationSubmit').unbind("touchend", app.handleTouchEnd);
-//        $('#getGps').unbind("onetap", app.getGeo);
-//        $('#nextQuestPage2').unbind("onetap", app.nextLocation);
-//        $('#getGps').unbind('click', app.getGeo);
-//        $('#nextQuestPage2').unbind('click', app.nextLocation);
-//        $('#locationSubmit').unbind("onetap", app.submitLocations);
-//        $('#locationSubmit').unbind("click", app.submitLocations);
-//        /***************************temporary solution**********************************/
-//        if (app.detectTouchSupport()) {
-//            $('#getGps, #nextQuestPage2, #locationSubmit').bind("touchend", app.handleTouchEnd);
-//            $('#getGps').bind("onetap", app.getGeo);
-//            $('#nextQuestPage2').bind("onetap", app.nextLocation);
-//            $('#locationSubmit').bind("onetap", app.submitLocations);
-//        } else {
-//            $('#getGps').bind('click', app.getGeo);
-//            $('#nextQuestPage2').bind('click', app.nextLocation);
-//             $('#locationSubmit').bind("click", app.submitLocations);
-//        }
+        //        $('#getGps, #nextQuestPage2, #locationSubmit').unbind("touchend", app.handleTouchEnd);
+        //        $('#getGps').unbind("onetap", app.getGeo);
+        //        $('#nextQuestPage2').unbind("onetap", app.nextLocation);
+        //        $('#getGps').unbind('click', app.getGeo);
+        //        $('#nextQuestPage2').unbind('click', app.nextLocation);
+        //        $('#locationSubmit').unbind("onetap", app.submitLocations);
+        //        $('#locationSubmit').unbind("click", app.submitLocations);
+        //        /***************************temporary solution**********************************/
+        //        if (app.detectTouchSupport()) {
+        //            $('#getGps, #nextQuestPage2, #locationSubmit').bind("touchend", app.handleTouchEnd);
+        //            $('#getGps').bind("onetap", app.getGeo);
+        //            $('#nextQuestPage2').bind("onetap", app.nextLocation);
+        //            $('#locationSubmit').bind("onetap", app.submitLocations);
+        //        } else {
+        //            $('#getGps').bind('click', app.getGeo);
+        //            $('#nextQuestPage2').bind('click', app.nextLocation);
+        //             $('#locationSubmit').bind("click", app.submitLocations);
+        //        }
         // document.getElementById("getGps").addEventListener("click", app.getGeo);
     },
     nextLocation: function (ev) {
 
         ev.preventDefault();
-
-
+       
 
         lite.saveLocations();
     },
@@ -342,7 +372,7 @@ var app = {
         } else if (hint != '' && (lat && lat != '')) {
             lite.saveLocations();
             setTimeout(function () {
-            lite.submitToDatabase();
+                lite.submitToDatabase();
             }, 1000)
         } else {
             alert('you did not finished your quest');
@@ -399,61 +429,68 @@ var app = {
     saveLocationstoDatabase: function (rs) {
         console.log("saveLocationstoDatabase");
         var literesult = rs.rows;
-        var uri= "http://m.edumedia.ca/wu000155/geo/create-locations.php";
+        var uri = "http://m.edumedia.ca/wu000155/geo/create-locations.php";
         //var uri = "js/create-locations.php";
         console.log(literesult.length);
-        for (var i = 0; i < literesult.length; i++) {
-            var quest_id = rs.rows.item(i).quest_id;
-            console.log(quest_id);
-            var sqlSequence = rs.rows.item(i).sequence;
-            console.log(sqlSequence);
-            var hint = rs.rows.item(i).hint;
-            console.log(hint);
-            var GPS = rs.rows.item(i).GPS;
-            console.log(GPS);
-            var user_id = rs.rows.item(i).user_id;
-            console.log(user_id);
-
-
-            var data = new FormData();
-            data.append('user_id', user_id);
-            data.append('sequence', sqlSequence);
-            data.append('hint', hint);
-            data.append('GPS', GPS);
-            data.append('quest_id', quest_id);
-           
-            var request = new XMLHttpRequest();
-            request.open('POST', uri, true);
-            request.onreadystatechange = function () {
-                if (request.readyState === 4 || request.readyState == "complete") {
-                    if (request.status === 200 || request.status === 0) {
-                        var result = request.responseText;
-//                        console.log(result);
-//                        console.log(JSON.parse(result));
-                        console.log(JSON.parse(result).values.length);
-                        console.log(literesult.length);
-//                        if (JSON.parse(result).values.length == literesult.length) {
-//                            console.log('isCompleted');
-//                            //app.changeStatus(quest_id);
-//        
-//                        }
-
-                    } else {
-
-                        $('<div class="notification">Oops! fail to save your quest, please try again</div>').insertBefore($('#locationContainer form'))
-                        setTimeout(function () {
-                            $('#locationContainer .notification').remove()
-                        }, 4000)
-                    }
-                }
-            }
-            request.send(data);
-
-        }
-      app.changeStatus(quest_id);  
+		if(literesult.length>0){
+			for (var i = 0; i < literesult.length; i++) {
+				var quest_id = rs.rows.item(i).quest_id;
+				console.log(quest_id);
+				var sqlSequence = rs.rows.item(i).sequence;
+				console.log(sqlSequence);
+				var hint = rs.rows.item(i).hint;
+				console.log(hint);
+				var GPS = rs.rows.item(i).GPS;
+				console.log(GPS);
+				var user_id = rs.rows.item(i).user_id;
+				console.log(user_id);
+	
+	
+				var data = new FormData();
+				data.append('user_id', user_id);
+				data.append('sequence', sqlSequence);
+				data.append('hint', hint);
+				data.append('GPS', GPS);
+				data.append('quest_id', quest_id);
+	
+				var request = new XMLHttpRequest();
+				request.open('POST', uri, true);
+				request.onreadystatechange = function () {
+					if (request.readyState === 4 || request.readyState == "complete") {
+						if (request.status === 200 || request.status === 0) {
+							var result = request.responseText;
+							//                        console.log(result);
+							//                        console.log(JSON.parse(result));
+							console.log(JSON.parse(result).values.length);
+							console.log(literesult.length);
+							//                        if (JSON.parse(result).values.length == literesult.length) {
+							//                            console.log('isCompleted');
+							//                            //app.changeStatus(quest_id);
+							//        
+							//                        }
+	
+						} else {
+	
+							$('<div class="notification">Oops! fail to save your quest, please try again</div>').insertBefore($('#locationContainer #locationHintArea'))
+							setTimeout(function () {
+								$('#locationContainer .notification').remove()
+							}, 4000)
+						}
+					}
+				}
+				request.send(data);
+	
+			}
+        app.changeStatus(quest_id);
+		}else{
+			$('<div class="notification">you did not save any location for this quest</div>').insertBefore($('#locationContainer #locationHintArea'))
+							setTimeout(function () {
+								$('#locationContainer .notification').remove()
+							}, 4000)
+		}
     },
     changeStatus: function (quest_id) {
-        var uri= "http://m.edumedia.ca/wu000155/geo/change-status.php";
+        var uri = "http://m.edumedia.ca/wu000155/geo/change-status.php";
         //var uri = "js/change-status.php";
 
         var data = new FormData();
@@ -465,20 +502,20 @@ var app = {
                 if (request.status === 200 || request.status === 0) {
                     var result = request.responseText;
                     console.log(result);
-                     
+
 
                 }
             }
         }
         request.send(data);
         /**********************************page change**********************/
-                            $('#createQuestMapPage').removeClass('show');
-                            $('#createQuestMapPage').addClass('hide');
-                            $('#welcomepages').removeClass('hide');
-                            $('#welcomepages').addClass('show');
+        $('#createQuestMapPage').removeClass('show');
+        $('#createQuestMapPage').addClass('hide');
+        $('#welcomepages').removeClass('hide');
+        $('#welcomepages').addClass('show');
         /**********************************page change**********************/
     },
-   
+
 
 
     handleTouchEnd: function (ev) {
