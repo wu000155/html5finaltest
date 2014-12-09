@@ -68,7 +68,7 @@ var becca={
         }
          
             $('.questsList li').bind('click', lite.checkOldStatus);
-        
+        lite.checkSavequest();
     },
     
     getServerLocations:function(quest_id){

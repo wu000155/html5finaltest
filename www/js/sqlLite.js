@@ -357,7 +357,37 @@ var lite = {
         }, lite.transErr, lite.transSuccess);
 
     },
+    checkSavequest:function(){
+        
+        db.transaction(function (trans) {
 
+            trans.executeSql('SELECT * FROM seqStatus', [],
+                function (tx, rs) {
+                    //success running the query
+                    console.log(rs);
+                    var result = rs.rows.length;
+
+                    console.log(result);
+                    if (result > 0) {
+
+                        for(var i=0;i<result;i++){
+                            var quest_id=rs.rows.item(i).quest_id;
+                            if($('.questsList')){
+                            $('.questsList > li[data-questId="'+quest_id+'"]').css('background-color','#D5CE54')
+                            console.log($('.questsList > li[data-questId="'+quest_id+'"]'))
+                            }
+                        }
+                    } 
+
+                },
+                function (tx, err) {
+                    //failed to run the query
+                    console.info(err.message);
+                });
+
+
+        }, lite.transErr, lite.transSuccess);
+    },
     transErr: function (tx, err) {
         //a generic function to run when any transaction fails
         //navigator.notification.alert(message, alertCallback, [title], [buttonName])
