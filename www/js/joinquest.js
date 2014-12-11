@@ -105,6 +105,9 @@ var becca={
             request.send(data);
     },
     showLocationTrack: function(){
+        if($('.joinLocationsContainer .notification')){
+          $('.joinLocationsContainer .notification').remove()
+        }
           /***************************page change**********************************/
         $('#joinQuestPage').removeClass('show');
         $('#joinQuestPage').addClass('hide');
@@ -200,6 +203,7 @@ var becca={
 //         }else{
 //            $(".joinBack").bind("click", becca.joinQuestPage);
 //         }
+        lite.checkStatus();
         $('#dialog').addClass('hide');
         $('#joinLocationsPgae, .heading').removeClass('blur');
         $('.mask').addClass('hide');
@@ -207,13 +211,16 @@ var becca={
     },
     showFinishedinfo :function(){
         console.log('showFinishedinfo');
-          $('.joinLocationsContainer').append('<div class="notification">you finished this whole quest,3 sec later will go to join quest page</div>')
-          setTimeout(function () {
-                            $('.joinLocationsContainer .notification').remove()
-                        }, 3000)
-           setTimeout(function () {
-               $('#joinLocationsPgae').addClass('hide');
-                           becca.joinQuestPage();
-                        }, 3000)
+		if($('.joinLocationsContainer .notification')){
+          $('.joinLocationsContainer .notification').remove()
+        }
+          $('.joinLocationsContainer').append('<div class="notification congrats"><h2>Congratulations</h2><h3>you have completed!!!</h3><p>Click home button to start your own quest or join another Quest</p></div>')
+//          setTimeout(function () {
+//                            $('.joinLocationsContainer .notification').remove()
+//                        }, 3000)
+//           setTimeout(function () {
+//               $('#joinLocationsPgae').addClass('hide');
+//                           becca.joinQuestPage();
+//                        }, 3000)
     }
 }

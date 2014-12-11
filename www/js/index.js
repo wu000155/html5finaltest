@@ -49,9 +49,9 @@ var app = {
         $('#getGps').bind('click', app.getGeo);
         $('#nextQuestPage2').bind('click', app.nextLocation);
         $('#locationSubmit').bind("click", app.submitLocations);
-        $('#saveStatus').bind('click', lite.checkStatus);
+        //$('#saveStatus').bind('click', lite.checkStatus);
         $('#nextLocation').bind('click', becca.nextGame);
-        $(".joinBack").bind("click", becca.joinQuestPage);
+        $(".joinBack").bind("click", app.welcomepages);
 
         //        if (app.detectTouchSupport()) {
         //            $("#createQuest").bind("touchend", app.handleTouchEnd);
@@ -163,11 +163,6 @@ var app = {
                             }, 4000)
                         }
 
-                    } else {
-                        $('.loginPageSocial').append('<div class="notification">Oops! fail to register your account, please try again</div>');
-                        setTimeout(function () {
-                            $('#frontPage .notification').remove()
-                        }, 4000)
                     }
                 } else {
                     $('.loginPageSocial').append('<div class="notification">Oops! fail to register your account, please try again</div>');
@@ -202,11 +197,11 @@ var app = {
         $('[data-role="page"]').addClass('hide');
         $('#welcomepages').removeClass('hide');
         $('#welcomepages').addClass('show');
-		 $('#questMapPagebtn').removeClass('show');
-		$('#questMapPagebtn').addClass('hide');
-       
+        /* $('#questMapPagebtn').removeClass('show');
+		$('#questMapPagebtn').addClass('hide');*/
+
         $("#questName").val("");
-        $('#locationContainer').attr('data-sequence','');
+        $('#locationContainer').attr('data-sequence', '');
     },
 
 
@@ -272,24 +267,19 @@ var app = {
                             app.createQuestMapPage(quest_id);
                         } else {
                             //alert('same quest name');
-                            $('<div class="notification">same quest name</div>').insertBefore($('#createContainer .createQuestForm'))
+                            $('<div class="notification">Quest name taken</div>').insertBefore($('#createContainer .createQuestForm'))
                             setTimeout(function () {
                                 $('#createContainer .notification').remove()
                             }, 4000)
                         }
 
-                    } else {
-
-                        $('<div class="notification">Oops! fail to save your quest, please try again</div>').insertBefore($('#createContainer .createQuestForm'))
-                        setTimeout(function () {
-                            $('#createContainer .notification').remove()
-                        }, 4000)
                     }
+                } else {
+                    $('<div class="notification">Oops! fail to save your quest, please try again</div>').insertBefore($('#createContainer .createQuestForm'))
+                    setTimeout(function () {
+                        $('#createContainer .notification').remove()
+                    }, 4000)
                 }
-                $('<div class="notification">Oops! fail to save your quest, please try again</div>').insertBefore($('#createContainer .createQuestForm'))
-                setTimeout(function () {
-                    $('#createContainer .notification').remove()
-                }, 4000)
             }
             request.send(data);
         } else {
@@ -314,25 +304,22 @@ var app = {
         /***************************page change**********************************/
         $('#locationContainer').attr('data-GEOQuest-id', quest_id);
 
-        if ($('#locationContainer').attr('data-sequence')=="") {
+        if ($('#locationContainer').attr('data-sequence') == "") {
             sequence = 0;
-			console.log(sequence);
-			//has issue
-            $('#locationContainer').attr('data-sequence',sequence);
-			$('<div class="notification">Finish your first location, then you can see back button</div>').insertBefore($('#locationContainer #locationHintArea'))
-							setTimeout(function () {
-								$('#locationContainer .notification').remove()
-							}, 4000)
+            console.log(sequence);
+            //has issue
+            $('#locationContainer').attr('data-sequence', sequence);
+
         } else {
             if ($('#locationContainer .information')) {
                 $('#locationContainer .information').remove();
             }
             sequence = Number($('#locationContainer').attr('data-sequence'));
-			console.log(sequence);
-            $('#questMapPagebtn').removeClass('hide');
-            $('#questMapPagebtn').addClass('show');
+            console.log(sequence);
+            /* $('#questMapPagebtn').removeClass('hide');
+            $('#questMapPagebtn').addClass('show');*/
             var pages = sequence + 1
-            $('<div class="information">your No.' + pages + ' location</div>').insertAfter($('#locationContainer #locationHintArea'))
+            $('<div class="information">your No.' + pages + ' location</div>').insertBefore($('#locationContainer #getGps'))
             $('#locationContainer').attr('data-sequence', '');
         }
         /***************************temporary solution**********************************/
@@ -359,7 +346,7 @@ var app = {
     nextLocation: function (ev) {
 
         ev.preventDefault();
-       
+
 
         lite.saveLocations();
     },
@@ -370,7 +357,12 @@ var app = {
         if (hint == "" && !lat) {
             lite.submitToDatabase();
         } else if (hint != '' && (lat && lat != '')) {
+            $('#createQuestMapPage').removeClass('show');
+            $('#createQuestMapPage').addClass('hide');
+            $('#welcomepages').removeClass('hide');
+            $('#welcomepages').addClass('show');
             lite.saveLocations();
+
             setTimeout(function () {
                 lite.submitToDatabase();
             }, 1000)
@@ -432,62 +424,62 @@ var app = {
         var uri = "http://m.edumedia.ca/wu000155/geo/create-locations.php";
         //var uri = "js/create-locations.php";
         console.log(literesult.length);
-		if(literesult.length>0){
-			for (var i = 0; i < literesult.length; i++) {
-				var quest_id = rs.rows.item(i).quest_id;
-				console.log(quest_id);
-				var sqlSequence = rs.rows.item(i).sequence;
-				console.log(sqlSequence);
-				var hint = rs.rows.item(i).hint;
-				console.log(hint);
-				var GPS = rs.rows.item(i).GPS;
-				console.log(GPS);
-				var user_id = rs.rows.item(i).user_id;
-				console.log(user_id);
-	
-	
-				var data = new FormData();
-				data.append('user_id', user_id);
-				data.append('sequence', sqlSequence);
-				data.append('hint', hint);
-				data.append('GPS', GPS);
-				data.append('quest_id', quest_id);
-	
-				var request = new XMLHttpRequest();
-				request.open('POST', uri, true);
-				request.onreadystatechange = function () {
-					if (request.readyState === 4 || request.readyState == "complete") {
-						if (request.status === 200 || request.status === 0) {
-							var result = request.responseText;
-							//                        console.log(result);
-							//                        console.log(JSON.parse(result));
-							console.log(JSON.parse(result).values.length);
-							console.log(literesult.length);
-							//                        if (JSON.parse(result).values.length == literesult.length) {
-							//                            console.log('isCompleted');
-							//                            //app.changeStatus(quest_id);
-							//        
-							//                        }
-	
-						} else {
-	
-							$('<div class="notification">Oops! fail to save your quest, please try again</div>').insertBefore($('#locationContainer #locationHintArea'))
-							setTimeout(function () {
-								$('#locationContainer .notification').remove()
-							}, 4000)
-						}
-					}
-				}
-				request.send(data);
-	
-			}
-        app.changeStatus(quest_id);
-		}else{
-			$('<div class="notification">you did not save any location for this quest</div>').insertBefore($('#locationContainer #locationHintArea'))
-							setTimeout(function () {
-								$('#locationContainer .notification').remove()
-							}, 4000)
-		}
+        if (literesult.length > 0) {
+            for (var i = 0; i < literesult.length; i++) {
+                var quest_id = rs.rows.item(i).quest_id;
+                console.log(quest_id);
+                var sqlSequence = rs.rows.item(i).sequence;
+                console.log(sqlSequence);
+                var hint = rs.rows.item(i).hint;
+                console.log(hint);
+                var GPS = rs.rows.item(i).GPS;
+                console.log(GPS);
+                var user_id = rs.rows.item(i).user_id;
+                console.log(user_id);
+
+
+                var data = new FormData();
+                data.append('user_id', user_id);
+                data.append('sequence', sqlSequence);
+                data.append('hint', hint);
+                data.append('GPS', GPS);
+                data.append('quest_id', quest_id);
+
+                var request = new XMLHttpRequest();
+                request.open('POST', uri, true);
+                request.onreadystatechange = function () {
+                    if (request.readyState === 4 || request.readyState == "complete") {
+                        if (request.status === 200 || request.status === 0) {
+                            var result = request.responseText;
+                            //                        console.log(result);
+                            //                        console.log(JSON.parse(result));
+                            console.log(JSON.parse(result).values.length);
+                            console.log(literesult.length);
+                            //                        if (JSON.parse(result).values.length == literesult.length) {
+                            //                            console.log('isCompleted');
+                            //                            //app.changeStatus(quest_id);
+                            //        
+                            //                        }
+
+                        } else {
+
+                            $('<div class="notification">Oops! fail to save your quest, please try again</div>').insertBefore($('#locationContainer #locationHintArea'))
+                            setTimeout(function () {
+                                $('#locationContainer .notification').remove()
+                            }, 4000)
+                        }
+                    }
+                }
+                request.send(data);
+
+            }
+            app.changeStatus(quest_id);
+        } else {
+            $('<div class="notification">you did not save any location for this quest</div>').insertBefore($('#locationContainer #locationHintArea'))
+            setTimeout(function () {
+                $('#locationContainer .notification').remove()
+            }, 4000)
+        }
     },
     changeStatus: function (quest_id) {
         var uri = "http://m.edumedia.ca/wu000155/geo/change-status.php";
@@ -509,10 +501,7 @@ var app = {
         }
         request.send(data);
         /**********************************page change**********************/
-        $('#createQuestMapPage').removeClass('show');
-        $('#createQuestMapPage').addClass('hide');
-        $('#welcomepages').removeClass('hide');
-        $('#welcomepages').addClass('show');
+
         /**********************************page change**********************/
     },
 

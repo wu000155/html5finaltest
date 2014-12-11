@@ -75,15 +75,15 @@ var lite = {
                             }
                             $('#locationContainer').attr('data-sequence',sequence);
                             console.info("locations have been inserted");
-							 $('#questMapPagebtn').removeClass('hide');
-                             $('#questMapPagebtn').addClass('show');
+							/* $('#questMapPagebtn').removeClass('hide');
+                             $('#questMapPagebtn').addClass('show');*/
                             $('#mapcontainer').attr('data-lat', '');
                             $('#mapcontainer').attr('data-lon', '');
                             $("textarea").val('');
                             $('#mapcontainer').remove();
                             //                            $('<div id="mapcontainer" data-lat="" data-lon=""></div>').insertAfter($('#locationContainer #getGps'))
                             var pages = sequence + 1
-                            $('<div class="information">your No.' + pages + ' location</div>').insertAfter($('#locationContainer #locationHintArea'))
+                            $('<div class="information">your No.' + pages + ' location</div>').insertBefore($('#locationContainer #getGps'))
                             /****************add transition class again to fake page change******good choice************/
 
 
@@ -275,13 +275,17 @@ var lite = {
                     //success running the query
                     var result = rs.rows.length;
                     console.log(result);
+					$('#myQuestPage').removeClass('show');
+                  $('#myQuestPage').addClass('hide');
                     if (result > 0) {
-                        $('#myQuestPage').removeClass('show');
-                        $('#myQuestPage').addClass('hide');
+                        
                         $('#locationContainer').attr('data-sequence', result);
-                        app.createQuestMapPage(quest_id);
-                    }
-
+                        
+                    }else{
+						  $('#locationContainer').attr('data-sequence', "0");
+					  }
+					
+                  app.createQuestMapPage(quest_id);
                 },
                 function (tx, err) {
                     //failed to run the query
@@ -373,7 +377,7 @@ var lite = {
                         for(var i=0;i<result;i++){
                             var quest_id=rs.rows.item(i).quest_id;
                             if($('.questsList')){
-                            $('.questsList > li[data-questId="'+quest_id+'"]').css('background-color','#D5CE54')
+                            $('.questsList > li[data-questId="'+quest_id+'"]').css('background-color','#9e9f9d')
                             console.log($('.questsList > li[data-questId="'+quest_id+'"]'))
                             }
                         }
